@@ -23,7 +23,7 @@
     "**/*.ts",
     "**/*.tsx",
     "pages/index.jsx",
-    "lib/datocms.tsx",
+    "lib/datocms.ts",
     "pages/index.tsx",
   ],
   "exclude": [

@@ -8,7 +8,7 @@ type Props = {
     title?: string
 }
 
-const Layout = ({ children, title = 'Masato Arai, Web App Developer' }: Props) => (
+const Layout = ({ children, title = 'Masato Arai - Web App Developer' }: Props) => (
     <div>
         <Head>
           <title>{title}</title>
@@ -27,15 +27,15 @@ const Layout = ({ children, title = 'Masato Arai, Web App Developer' }: Props) =
           <meta name="og:type" content="website" />
         </Head>
         <header>
-            <nav>
-                <Link href="/">
-                    <a>Home</a>
-                </Link>{' '}
-                |{' '}
-                <Link href="/about">
-                    <a>About</a>
-                </Link>{' '}
-            </nav>
+          <nav>
+            <Link href="/">
+              <a>Home</a>
+            </Link>{' '}
+            |{' '}
+            <Link href="/about">
+              <a>About</a>
+            </Link>{' '}
+          </nav>
         </header>
 
         {children}

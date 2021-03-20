@@ -2,16 +2,17 @@ import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 
 const httpLink = createHttpLink({
-  uri: 'https://graphql.datocms.com/',
+  uri: 'https://graphql.datocms.com',
 })
 
-const authLink = setContext((_, { headers }) => {
+const authLink = setContext((_, { headers, preview }) => {
+  console.log('preview', preview);
+
   return {
     headers: {
       ...headers,
       contentType: 'application/json',
-      accept: 'application/json',
-      authorization: `Bearer ${process.env.NEXT_DATOCMS_API_TOKEN}`,
+      authorization: `Bearer ${process.env.NEXT_DATOCMS_PRODUCTION_API_TOKEN}`,
     }
   }
 })

@@ -1,27 +1,52 @@
 import { GetStaticProps } from 'next'
 
 import Layout from '../components/Layout'
-import client from '../lib/apollo-client'
-import GET_HOME_DATA from '../graphql/query/get-home-data'
+import { request } from '../lib/datocms'
 
+import GET_HOME_DATA from '../graphql/query/get-home-data'
 interface HomeProps {
-  heading: string;
+  data: object;
 }
 
-const Home = props => {
+const Home = ({ data }) => {
+  if (data.notFound) {
+    return (
+      <Layout title="Data Not Found">
+        <h1>Data not found</h1>
+      </Layout>
+    )
+  }
+
   return (
-    <Layout title="Masato Arai | Web App Developer">
-      <h1>{props.heading}</h1>
+    <Layout title="Masato Arai - Web App Developer">
+      <h1>{data.heading}</h1>
+
+      {data.description && (
+        <div dangerouslySetInnerHTML={{ __html: data.description }} />
+      )}
+
+      {data.contact && (
+        <div dangerouslySetInnerHTML={{ __html: data.contact }} />
+      )}
     </Layout>
   )
 }
 
-export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const { data } = await client.query({ query: GET_HOME_DATA })
+export const getStaticProps: GetStaticProps<HomeProps> = async (context) => {
+  const data = await request({
+    query: GET_HOME_DATA,
+    preview: context.preview,
+  })
+
+  if (!data) {
+    return {
+      notFound: true,
+    }
+  }
 
   return {
     props: {
-      heading: data.home.heading,
+      data: data.home,
     },
   }
 }
