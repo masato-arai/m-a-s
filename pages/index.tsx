@@ -1,15 +1,37 @@
-import Link from 'next/link'
+import { GetStaticProps } from 'next';
+
 import Layout from '../components/Layout'
+import { gql } from '@apollo/client';
+import client from '../lib/apollo-client';
 
-const IndexPage = () => (
-    <Layout title="Home | Next.js + TypeScript Example">
-        <h1>Hello Next.js 👋</h1>
-        <p>
-            <Link href="/about">
-                <a>About</a>
-            </Link>
-        </p>
+const HOMEPAGE_QUERY = gql`
+  query Home {
+    home {
+      heading
+    }
+  }
+`
+
+interface HomeProps {
+  heading: string;
+}
+
+const Home = props => {
+  return (
+    <Layout title="Masato Arai | Web App Developer">
+      <h1>{props.heading}</h1>
     </Layout>
-)
+  )
+}
 
-export default IndexPage
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  const { data } = await client.query({ query: HOMEPAGE_QUERY });
+
+  return {
+    props: {
+      heading: data.home.heading,
+    },
+  };
+}
+
+export default Home
