@@ -1,16 +1,8 @@
-import { GetStaticProps } from 'next';
+import { GetStaticProps } from 'next'
 
 import Layout from '../components/Layout'
-import { gql } from '@apollo/client';
-import client from '../lib/apollo-client';
-
-const HOMEPAGE_QUERY = gql`
-  query Home {
-    home {
-      heading
-    }
-  }
-`
+import client from '../lib/apollo-client'
+import GET_HOME_DATA from '../graphql/query/get-home-data'
 
 interface HomeProps {
   heading: string;
@@ -25,13 +17,13 @@ const Home = props => {
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const { data } = await client.query({ query: HOMEPAGE_QUERY });
+  const { data } = await client.query({ query: GET_HOME_DATA })
 
   return {
     props: {
       heading: data.home.heading,
     },
-  };
+  }
 }
 
 export default Home
