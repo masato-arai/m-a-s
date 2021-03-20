@@ -12,6 +12,8 @@ interface HomeProps {
 
 const Home = ({ data }) => {
   // if (!data) return <DataNotFound />
+  console.log('data', data);
+
 
   return (
     <Layout title="Masato Arai - Web App Developer">
