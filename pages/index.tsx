@@ -20,7 +20,9 @@ const Home = ({ data, notFound }) => {
 
   return (
     <Layout title="Masato Arai - Web App Developer">
-      <h1>{data.heading}</h1>
+      {data.heading && (
+        <h1>{data.heading}</h1>
+      )}
 
       {data.description && (
         <div dangerouslySetInnerHTML={{ __html: data.description }} />
