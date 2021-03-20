@@ -4,18 +4,14 @@ import Layout from '../components/Layout'
 import { request } from '../lib/datocms'
 
 import GET_HOME_DATA from '../graphql/query/get-home-data'
+import DataNotFound from '../components/DataNotFound'
+
 interface HomeProps {
   data: object;
 }
 
 const Home = ({ data }) => {
-  if (!data) {
-    return (
-      <Layout title="Data Not Found">
-        <h1>Data not found</h1>
-      </Layout>
-    )
-  }
+  if (!data) return <DataNotFound />
 
   return (
     <Layout title="Masato Arai - Web App Developer">
