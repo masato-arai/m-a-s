@@ -5,12 +5,11 @@ import { request } from '../lib/datocms'
 
 import GET_HOME_DATA from '../graphql/query/get-home-data'
 interface HomeProps {
-  data?: object;
-  notFound?: boolean;
+  data: object;
 }
 
-const Home = ({ data, notFound }) => {
-  if (notFound) {
+const Home = ({ data }) => {
+  if (!data) {
     return (
       <Layout title="Data Not Found">
         <h1>Data not found</h1>
@@ -40,14 +39,6 @@ export const getStaticProps: GetStaticProps<HomeProps> = async (context) => {
     query: GET_HOME_DATA,
     preview: context.preview,
   })
-
-  if (!data) {
-    return {
-      props: {
-        notFound: true,
-      }
-    }
-  }
 
   return {
     props: {
