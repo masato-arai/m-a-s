@@ -110,9 +110,7 @@ const Canvas = () => {
     };
   }, [])
 
-  return (
-    <div ref={mountRef} />
-  )
+  return <div ref={mountRef} />
 }
 
 export default Canvas
