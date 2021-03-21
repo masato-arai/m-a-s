@@ -5,6 +5,7 @@ const Canvas = () => {
   const mount = useRef(null)
   const scene = new THREE.Scene();
 
+  let frameId
   let camera
   let mesh
   let mouse2D
@@ -55,7 +56,7 @@ const Canvas = () => {
   }
 
   function animate() {
-    window.requestAnimationFrame(animate)
+    frameId = window.requestAnimationFrame(animate)
     const euler = new THREE.Euler(-mouse2D.y, mouse2D.x, 0)
     const quaternion = new THREE.Quaternion().setFromEuler(euler)
     const newQuaternion = new THREE.Quaternion()
@@ -64,25 +65,28 @@ const Canvas = () => {
     renderer.render(scene, camera)
   }
 
+  function mousemoveEventHandler(e) {
+    mouse2D.x = ((event.pageX / window.innerWidth) * 2) - 1;
+    mouse2D.y = (-(event.pageY / window.innerHeight) * 2) + 1;
+
+    mouseObj.x = event.pageX - (window.innerWidth / 2)
+    mouseObj.y = event.pageY - (window.innerHeight / 2)
+    mouseObj.percentX = Math.ceil((mouseObj.x / (window.innerWidth / 2)) * 100)
+    mouseObj.percentY = Math.ceil((mouseObj.y / (window.innerHeight / 2)) * 100)
+    mouseObj.lastX = event.pageX;
+    mouseObj.lastY = event.pageY;
+  }
+
+  function resizeEventHandler() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix()
+    renderer.setSize(window.innerWidth, window.innerHeight)
+    renderer.render(scene, camera)
+  }
+
   function setEventListers() {
-    window.addEventListener('mousemove', (event) => {
-      mouse2D.x = ((event.pageX / window.innerWidth) * 2) - 1;
-      mouse2D.y = (-(event.pageY / window.innerHeight) * 2) + 1;
-
-      mouseObj.x = event.pageX - (window.innerWidth / 2)
-      mouseObj.y = event.pageY - (window.innerHeight / 2)
-      mouseObj.percentX = Math.ceil((mouseObj.x / (window.innerWidth / 2)) * 100)
-      mouseObj.percentY = Math.ceil((mouseObj.y / (window.innerHeight / 2)) * 100)
-      mouseObj.lastX = event.pageX;
-      mouseObj.lastY = event.pageY;
-    }, false)
-
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix()
-      renderer.setSize(window.innerWidth, window.innerHeight)
-      renderer.render(scene, camera)
-    }, false)
+    window.addEventListener('mousemove', mousemoveEventHandler, false)
+    window.addEventListener('resize', resizeEventHandler, false)
   }
 
   useEffect(() => {
@@ -93,6 +97,12 @@ const Canvas = () => {
     setDomElement()
     animate()
     setEventListers()
+
+    return () => {
+      cancelAnimationFrame(frameId)
+      window.removeEventListener('mousemove', mousemoveEventHandler)
+      window.removeEventListener('resize', resizeEventHandler)
+    };
   }, [])
 
   return (
