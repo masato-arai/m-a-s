@@ -1,23 +1,23 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 
 const Canvas = () => {
-  const mount = useRef(null)
-  const scene = new THREE.Scene();
+  const mountRef = useRef(null)
+  const [mouseObj] = useState({ x: 0, y: 0, percentX: 0, percentY: 0, lastX: 0, lastY: 0 })
+  const scene = new THREE.Scene()
 
-  let frameId
+  let light
   let camera
   let mesh
   let mouse2D
-  let mouseObj = { x: 0, y: 0, percentX: 0, percentY: 0, lastX: 0, lastY: 0 }
   let renderer
+  let animationFrameId
 
   function setBackground() {
     scene.background = new THREE.Color(0x1a1a1a)
   }
 
   function setLights() {
-    let light
     light = new THREE.DirectionalLight(0xffffff)
     light.position.set(1, 1, 1)
     scene.add(light)
@@ -41,28 +41,32 @@ const Canvas = () => {
       color: 0x828282,
       wireframe: true,
     })
+
     mesh = new THREE.Mesh(geometry , material)
     mesh.rotation.x = -(Math.PI * 0.2)
     mesh.rotation.y = -(Math.PI * 0.2)
     mesh.autoUpdateMatrix = false
+
     scene.add(mesh)
   }
 
-  function setDomElement() {
+  function setRenderer() {
     renderer = new THREE.WebGLRenderer()
     renderer.setSize(window.innerWidth, window.innerHeight)
     mouse2D = new THREE.Vector2()
-    mount.current.appendChild(renderer.domElement)
+    mountRef.current.appendChild(renderer.domElement)
   }
 
   function animate() {
-    frameId = window.requestAnimationFrame(animate)
     const euler = new THREE.Euler(-mouse2D.y, mouse2D.x, 0)
     const quaternion = new THREE.Quaternion().setFromEuler(euler)
     const newQuaternion = new THREE.Quaternion()
+
     THREE.Quaternion.slerp(mesh.quaternion, quaternion, newQuaternion, 0.1)
     mesh.quaternion.slerp(newQuaternion, 0.1)
     renderer.render(scene, camera)
+
+    animationFrameId = window.requestAnimationFrame(animate)
   }
 
   function mousemoveEventHandler(e) {
@@ -94,19 +98,20 @@ const Canvas = () => {
     setLights()
     setCamera()
     setMaterial()
-    setDomElement()
+    setRenderer()
+
     animate()
     setEventListers()
 
     return () => {
-      cancelAnimationFrame(frameId)
+      cancelAnimationFrame(animationFrameId)
       window.removeEventListener('mousemove', mousemoveEventHandler)
       window.removeEventListener('resize', resizeEventHandler)
     };
   }, [])
 
   return (
-    <div ref={mount} />
+    <div ref={mountRef} />
   )
 }
 
