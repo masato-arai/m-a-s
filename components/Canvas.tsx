@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { MouseEvent, useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
 const Canvas = () => {
   const mountRef = useRef(null)
-  const [mouseObj] = useState({ x: 0, y: 0, percentX: 0, percentY: 0, lastX: 0, lastY: 0 })
   const scene = new THREE.Scene()
+  const mouseObj = { x: 0, y: 0, percentX: 0, percentY: 0, lastX: 0, lastY: 0 }
 
   let light
   let camera
@@ -69,7 +69,12 @@ const Canvas = () => {
     animationFrameId = window.requestAnimationFrame(animate)
   }
 
-  function mousemoveEventHandler(e) {
+  interface MousemoveEvent {
+    pageX: number;
+    pageY: number;
+  }
+
+  function mousemoveEventHandler(event: MousemoveEvent) {
     mouse2D.x = ((event.pageX / window.innerWidth) * 2) - 1;
     mouse2D.y = (-(event.pageY / window.innerHeight) * 2) + 1;
 

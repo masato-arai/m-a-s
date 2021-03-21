@@ -25,6 +25,7 @@
     "pages/index.jsx",
     "lib/apollo-client.ts",
     "pages/index.tsx",
+    "components/Canvas.tsx",
   ],
   "exclude": [
     "node_modules"
