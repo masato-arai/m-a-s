@@ -23,7 +23,7 @@
     "**/*.ts",
     "**/*.tsx",
     "pages/index.jsx",
-    "lib/datocms.ts",
+    "lib/apollo-client.ts",
     "pages/index.tsx",
   ],
   "exclude": [

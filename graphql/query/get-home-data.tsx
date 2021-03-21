@@ -1,4 +1,6 @@
-const GET_HOME_DATA = `
+import { gql } from '@apollo/client'
+
+const GET_HOME_DATA = gql`
   query Home {
     home {
       heading

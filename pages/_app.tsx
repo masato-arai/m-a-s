@@ -2,11 +2,11 @@
 import type { AppProps /*, AppContext */ } from 'next/app'
 import { ApolloProvider } from '@apollo/client'
 
-import client from '../lib/apollo-client'
+import apollo from '../lib/apollo-client'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ApolloProvider client={client}>
+    <ApolloProvider client={apollo.getClient()}>
       <Component {...pageProps} />
     </ApolloProvider>
   )

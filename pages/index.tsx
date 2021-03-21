@@ -1,10 +1,10 @@
 import { GetStaticProps } from 'next'
 
-import Layout from '../components/Layout'
-import { request } from '../lib/datocms'
-
+import apollo from '../lib/apollo-client'
 import GET_HOME_DATA from '../graphql/query/get-home-data'
+
 import DataNotFound from '../components/DataNotFound'
+import Layout from '../components/Layout'
 
 interface HomeProps {
   data: object;
@@ -31,10 +31,8 @@ const Home = ({ data }) => {
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async (context) => {
-  const data = await request({
-    query: GET_HOME_DATA,
-    preview: context.preview,
-  })
+  const client = await apollo.getClient(context.preview);
+  const { data } = await client.query({ query: GET_HOME_DATA });
 
   return {
     props: {
