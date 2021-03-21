@@ -5,6 +5,7 @@ import GET_HOME_DATA from '../graphql/query/get-home-data'
 
 import DataNotFound from '../components/DataNotFound'
 import Layout from '../components/Layout'
+import Canvas from '../components/Canvas'
 
 interface HomeProps {
   data: object;
@@ -15,6 +16,8 @@ const Home = ({ data }) => {
 
   return (
     <Layout title="Masato Arai - Web App Developer">
+      <Canvas />
+
       {data.heading && (
         <h1>{data.heading}</h1>
       )}
