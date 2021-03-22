@@ -1,14 +1,30 @@
 // import App from "next/app";
 import type { AppProps /*, AppContext */ } from 'next/app'
 import { ApolloProvider } from '@apollo/client'
+import { Normalize } from 'styled-normalize'
+import { ThemeProvider } from 'styled-components'
 
 import apollo from '../lib/apollo-client'
+import { GlobalStyle } from '../styles/base/global-style'
+
+const theme = {
+  colors: {
+    primary: '#0070f3',
+  },
+}
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ApolloProvider client={apollo.getClient()}>
-      <Component {...pageProps} />
-    </ApolloProvider>
+    <>
+      <Normalize />
+      <GlobalStyle />
+
+      <ApolloProvider client={apollo.getClient()}>
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </ApolloProvider>
+    </>
   )
 }
 

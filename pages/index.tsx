@@ -34,8 +34,8 @@ const Home = ({ data }) => {
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async (context) => {
-  const client = await apollo.getClient(context.preview);
-  const { data } = await client.query({ query: GET_HOME_DATA });
+  const client = await apollo.getClient(context.preview)
+  const { data } = await client.query({ query: GET_HOME_DATA })
 
   return {
     props: {
