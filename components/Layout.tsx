@@ -1,6 +1,5 @@
 
 import React, { ReactNode } from 'react'
-import Link from 'next/link'
 import Head from 'next/head'
 
 type Props = {
@@ -9,7 +8,7 @@ type Props = {
 }
 
 const Layout = ({ children, title = 'Masato Arai - Web App Developer' }: Props) => (
-    <div>
+    <>
         <Head>
           <title>{title}</title>
           <meta charSet="utf-8" />
@@ -26,20 +25,9 @@ const Layout = ({ children, title = 'Masato Arai - Web App Developer' }: Props) 
           <meta name="og:locale" content="en_GB" />
           <meta name="og:type" content="website" />
         </Head>
-        <header>
-          <nav>
-            <Link href="/">
-              <a>Home</a>
-            </Link>{' '}
-            |{' '}
-            <Link href="/about">
-              <a>About</a>
-            </Link>{' '}
-          </nav>
-        </header>
 
         {children}
-    </div>
+    </>
 )
 
 export default Layout

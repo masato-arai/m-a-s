@@ -31,6 +31,7 @@ export const GlobalStyle = createGlobalStyle`
   h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
     line-height: 1.4;
+    margin-top: 0;
   }
 
   p {

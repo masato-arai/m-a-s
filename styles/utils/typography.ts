@@ -1,16 +1,13 @@
-import Link from 'next/link'
 import styled from 'styled-components'
 
-export const TypoH2 = styled.h2`
-  font-family: 'HK Grotesk Medium', Helvetica, Arial, sans-serif;
-  font-size: 24px;
-  line-height: 28px;
-`
+import { breakpoints } from './breakpoints'
 
-export const TypoTextLink = styled(Link)`
-  font-family: 'HK Grotesk Medium', Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 21px;
-  margin-bottom: 0;
-  text-decoration: none;
+export const TypoH1 = styled.h1`
+  font-size: 24px;
+  letter-spacing: 1px;
+  line-height: 1.6;
+
+  @media ${breakpoints.laptop} {
+    font-size: 32px;
+  }
 `

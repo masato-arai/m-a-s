@@ -1,5 +1,6 @@
-import React, { MouseEvent, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
+import styled from 'styled-components'
 
 const Canvas = () => {
   const mountRef = useRef(null)
@@ -115,7 +116,18 @@ const Canvas = () => {
     };
   }, [])
 
-  return <div ref={mountRef} />
+  return <Container ref={mountRef} />
 }
+
+const Container = styled.div`
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  z-index: 0;
+
+  & > canvas {
+    display: block;
+  }
+`;
 
 export default Canvas
