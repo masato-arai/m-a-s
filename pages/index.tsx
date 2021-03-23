@@ -7,15 +7,15 @@ import GET_HOME_DATA from '../graphql/query/get-home-data'
 import DataNotFound from '../components/DataNotFound'
 import Layout from '../components/Layout'
 import Canvas from '../components/Canvas'
+import Main from '../components/Main/Main'
 import HeaderWithBorder from '../components/HeaderWithBorder'
 import Wrapper from '../components/Wrapper'
+import CursorCircle from '../components/CursorCircle/CursorCircle'
 
 import { breakpoints } from '../styles/utils/breakpoints'
 import { colors } from '../styles/utils/colors'
-import { heights } from '../styles/utils/variables'
 import { spaces } from '../styles/utils/spaces'
-import { TypoH1, TypoTextLink } from '../styles/utils/typography'
-
+import { TypoH1 } from '../styles/utils/typography'
 
 interface HomeProps {
   data: object;
@@ -26,6 +26,7 @@ const Home = ({ data }) => {
 
   return (
     <Layout title="Masato Arai - Web App Developer">
+      <CursorCircle />
       <Canvas />
 
       <HeaderWithBorder />
@@ -63,17 +64,6 @@ export const getStaticProps: GetStaticProps<HomeProps> = async (context) => {
     },
   }
 }
-
-const Main = styled.main`
-  color: ${colors.white};
-  height: calc(100% - ${heights.headerHeightMobile});
-  position: relative;
-  z-index: 1;
-
-  @media ${breakpoints.laptop} {
-    height: calc(100% - ${heights.headerHeight});
-  }
-`
 
 const StyledWrapper = styled(Wrapper)`
   flex-direction: column;
