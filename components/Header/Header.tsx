@@ -1,26 +1,29 @@
+import Link from 'next/link'
 import styled from 'styled-components'
 
-import { breakpoints } from '../styles/utils/breakpoints'
-import { colors } from '../styles/utils/colors'
-import { spaces } from '../styles/utils/spaces'
-
-import Wrapper from './Wrapper'
-import HeaderNav from './HeaderNav/HeaderNav'
+import { breakpoints } from '../../styles/utils/breakpoints'
+import { spaces } from '../../styles/utils/spaces'
+import { TypoNavLink } from '../../styles/utils/typography'
+import HeaderNav from '../HeaderNav/HeaderNav'
+import Wrapper from '../Wrapper'
 
 const Header = () => (
   <Container>
     <StyledWrapper>
-      <Border />
+      <Link href="/" passHref>
+        <TypoNavLink>
+          Masato Arai
+        </TypoNavLink>
+      </Link>
+
       <HeaderNav />
     </StyledWrapper>
   </Container>
 )
 
 const Container = styled.header`
-  align-items: center;
   display: flex;
   justify-content: space-between;
-  min-height: 28px;
   padding: ${spaces.medium} 0;
   position: relative;
   width: 100%;
@@ -32,16 +35,9 @@ const Container = styled.header`
 `
 
 const StyledWrapper = styled(Wrapper)`
-  align-items: center;
   display: flex;
   justify-content: space-between;
   width: 100%;
-`
-
-const Border = styled.div`
-  background-color: ${colors.white};
-  height: 3px;
-  width: 50%;
 `
 
 export default Header

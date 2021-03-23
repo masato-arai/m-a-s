@@ -4,10 +4,6 @@ import styled from 'styled-components'
 
 import cursorCircleActions from '../CursorCircle/cursorCircleActions'
 
-import { breakpoints } from '../../styles/utils/breakpoints'
-import { colors } from '../../styles/utils/colors'
-import { heights } from '../../styles/utils/variables'
-
 interface MousemoveEvent {
   target: HTMLInputElement;
 }
@@ -19,10 +15,8 @@ const Main = ({ children }) => {
   function mousemoveEventHandler(event: MousemoveEvent) {
     const target = event.target
 
-    if (!target.classList.contains('link')) {
-      dispatch(cursorCircleActions.shrinkCircle({ isOnLink: false }))
-
-      return
+    if (target.tagName !== 'A' && target.tagName !== 'BUTTON') {
+      return dispatch(cursorCircleActions.shrinkCircle({ isOnLink: false }))
     }
 
     dispatch(cursorCircleActions.enlargeCircle({ isOnLink: true }))
@@ -44,14 +38,7 @@ const Main = ({ children }) => {
 }
 
 const Container = styled.main`
-  color: ${colors.white};
-  height: calc(100% - ${heights.headerHeightMobile});
-  position: relative;
-  z-index: 1;
-
-  @media ${breakpoints.laptop} {
-    height: calc(100% - ${heights.headerHeight});
-  }
+  height: 100%;
 `
 
 export default Main

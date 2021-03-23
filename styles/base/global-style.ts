@@ -12,6 +12,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     background-color: ${colors.darkGrey};
+    color: ${colors.white};
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     letter-spacing: 2px;

@@ -14,7 +14,9 @@ interface MousemoveEvent {
 
 const CursorCircle = () => {
   const circleEl = useRef(null)
-  const circleIsOnLink: boolean = useSelector(state => state.isOnLink)
+  const circleIsOnLink: boolean = useSelector(state => {
+    return state.cursorCircle.isOnLink
+  })
 
   const mousemoveEventHandler = (event: MousemoveEvent) => {
     gsap.to(circleEl.current, {
