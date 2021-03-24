@@ -5,13 +5,13 @@ import { colors } from '../styles/utils/colors'
 import { spaces } from '../styles/utils/spaces'
 
 import Wrapper from './Wrapper'
-import HeaderNav from './HeaderNav/HeaderNav'
+// import HeaderNav from './HeaderNav/HeaderNav'
 
 const Header = () => (
   <Container>
     <StyledWrapper>
       <Border />
-      <HeaderNav />
+      {/* <HeaderNav /> */}
     </StyledWrapper>
   </Container>
 )

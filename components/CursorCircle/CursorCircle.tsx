@@ -12,33 +12,42 @@ interface MousemoveEvent {
   clientY: number;
 }
 
+interface CursorCircleState {
+  cursorCircle: CursorCircle;
+}
+
+interface CursorCircle {
+  isOnLink: boolean;
+  leftPosition: number;
+  topPosition: number;
+}
+
 const CursorCircle = () => {
   const circleEl = useRef(null)
-  const circleIsOnLink: boolean = useSelector(state => {
-    return state.cursorCircle.isOnLink
+  const cursorCircle: CursorCircle = useSelector((state: CursorCircleState) => {
+    return {
+      isOnLink: state.cursorCircle.isOnLink,
+      leftPosition: state.cursorCircle.leftPosition,
+      topPosition: state.cursorCircle.topPosition,
+    }
   })
-
-  const mousemoveEventHandler = (event: MousemoveEvent) => {
-    gsap.to(circleEl.current, {
-      css: {
-        left: event.clientX - 12,
-        top: event.clientY - 12
-      },
-      duration: 0.6,
-    })
-  }
 
   useEffect(() => {
     gsap.registerPlugin(CSSPlugin);
-    window.addEventListener('mousemove', mousemoveEventHandler)
-
-    return () => {
-      window.removeEventListener('mousemove', mousemoveEventHandler)
-    }
   }, [])
 
+  useEffect(() => {
+    gsap.to(circleEl.current, {
+      css: {
+        left: cursorCircle.leftPosition,
+        top: cursorCircle.topPosition,
+      },
+      duration: 0.6,
+    })
+  }, [cursorCircle])
+
   return (
-    <Circle ref={circleEl} className={!!circleIsOnLink && 'enlarged'} />
+    <Circle ref={circleEl} className={!!cursorCircle.isOnLink && 'enlarged'} />
   )
 }
 
