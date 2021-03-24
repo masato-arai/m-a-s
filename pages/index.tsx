@@ -24,7 +24,7 @@ const Home = ({ data }) => {
   if (!data) return <DataNotFound />
 
   return (
-    <Layout title="Masato Arai - Web App Developer">
+    <Layout title="Masato Arai - Web Application Developer">
       <Canvas />
       <HeaderWithBorder />
 
