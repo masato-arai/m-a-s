@@ -26,6 +26,8 @@ const Main = ({ children }) => {
     container.current.addEventListener('mousemove', mousemoveEventHandler, true)
 
     return () => {
+      if (!container.current) return
+
       container.current.removeEventListener('mousemove', mousemoveEventHandler, false)
     }
   }, [])

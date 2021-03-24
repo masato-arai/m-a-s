@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
 import Layout from '../components/Layout'
-import Main from '../components/Main/Main'
-import CursorCircle from '../components/CursorCircle/CursorCircle'
 import Header from '../components/Header/Header'
 import Wrapper from '../components/Wrapper'
 
@@ -11,17 +9,13 @@ import { colors } from '../styles/utils/colors'
 const Playground = () => {
   return (
     <Layout title="Masato Arai - Playground">
-      <Main>
-        <CursorCircle />
+      <Header />
 
-        <Header />
-
-        <Container>
-          <Wrapper>
-            <h1>Playground</h1>
-          </Wrapper>
-        </Container>
-      </Main>
+      <Container>
+        <Wrapper>
+          <h1>Playground</h1>
+        </Wrapper>
+      </Container>
     </Layout>
   )
 }

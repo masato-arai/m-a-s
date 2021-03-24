@@ -7,8 +7,6 @@ import GET_HOME_DATA from '../graphql/query/get-home-data'
 import DataNotFound from '../components/DataNotFound'
 import Layout from '../components/Layout'
 import Canvas from '../components/Canvas'
-import Main from '../components/Main/Main'
-import CursorCircle from '../components/CursorCircle/CursorCircle'
 import HeaderWithBorder from '../components/HeaderWithBorder'
 import Wrapper from '../components/Wrapper'
 
@@ -28,29 +26,27 @@ const Home = ({ data }) => {
   return (
     <Layout title="Masato Arai - Web App Developer">
       <Canvas />
-      <Main>
-        <CursorCircle />
-        <HeaderWithBorder />
-        <Container>
-          <StyledWrapper>
-            <Lead>
-              {data.heading && (
-                <StyledTypoH1>{data.heading}</StyledTypoH1>
-              )}
-            </Lead>
+      <HeaderWithBorder />
 
-            <About>
-              {data.description && (
-                <Description dangerouslySetInnerHTML={{ __html: data.description }} />
-              )}
+      <Container>
+        <StyledWrapper>
+          <Lead>
+            {data.heading && (
+              <StyledTypoH1>{data.heading}</StyledTypoH1>
+            )}
+          </Lead>
 
-              {data.contact && (
-                <Contact dangerouslySetInnerHTML={{ __html: data.contact }} />
-              )}
-            </About>
-          </StyledWrapper>
-        </Container>
-      </Main>
+          <About>
+            {data.description && (
+              <Description dangerouslySetInnerHTML={{ __html: data.description }} />
+            )}
+
+            {data.contact && (
+              <Contact dangerouslySetInnerHTML={{ __html: data.contact }} />
+            )}
+          </About>
+        </StyledWrapper>
+      </Container>
     </Layout>
   )
 }

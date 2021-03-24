@@ -2,6 +2,9 @@
 import React, { ReactNode } from 'react'
 import Head from 'next/head'
 
+import CursorCircle from './CursorCircle/CursorCircle'
+import Main from './Main/Main'
+
 type Props = {
     children?: ReactNode
     title?: string
@@ -26,7 +29,11 @@ const Layout = ({ children, title = 'Masato Arai - Web App Developer' }: Props) 
           <meta name="og:type" content="website" />
         </Head>
 
-        {children}
+        <Main>
+          <CursorCircle />
+
+          {children}
+        </Main>
     </>
 )
 
