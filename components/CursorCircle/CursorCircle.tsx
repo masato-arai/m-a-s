@@ -7,11 +7,6 @@ import { breakpoints } from '../../styles/utils/breakpoints'
 import { colors } from '../../styles/utils/colors'
 import { spaces } from '../../styles/utils/spaces'
 
-interface MousemoveEvent {
-  clientX: number;
-  clientY: number;
-}
-
 interface CursorCircleState {
   cursorCircle: CursorCircle;
 }
