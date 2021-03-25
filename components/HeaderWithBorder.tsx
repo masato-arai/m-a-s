@@ -3,15 +3,12 @@ import styled from 'styled-components'
 import { breakpoints } from '../styles/utils/breakpoints'
 import { colors } from '../styles/utils/colors'
 import { spaces } from '../styles/utils/spaces'
-
-import Wrapper from './Wrapper'
-// import HeaderNav from './HeaderNav/HeaderNav'
+import { Wrapper } from '../styles/utils/wrappers'
 
 const Header = () => (
   <Container>
     <StyledWrapper>
       <Border />
-      {/* <HeaderNav /> */}
     </StyledWrapper>
   </Container>
 )

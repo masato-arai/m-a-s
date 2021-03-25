@@ -8,12 +8,12 @@ import DataNotFound from '../components/DataNotFound'
 import Layout from '../components/Layout'
 import Canvas from '../components/Canvas'
 import HeaderWithBorder from '../components/HeaderWithBorder'
-import Wrapper from '../components/Wrapper'
 
 import { breakpoints } from '../styles/utils/breakpoints'
 import { colors } from '../styles/utils/colors'
 import { heights } from '../styles/utils/variables'
 import { spaces } from '../styles/utils/spaces'
+import { Wrapper } from '../styles/utils/wrappers'
 import { TypoH1 } from '../styles/utils/typography'
 
 interface HomeProps {
