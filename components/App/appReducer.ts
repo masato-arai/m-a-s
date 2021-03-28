@@ -2,6 +2,7 @@ const initialState = {
   cursorIsOnLink: false,
   mousePositionLeft: 0,
   mousePositionTop: 0,
+  playgroundVisible: false,
 }
 
 const main = (state = initialState, action) => {
@@ -21,6 +22,11 @@ const main = (state = initialState, action) => {
       return {
         ...state,
         cursorIsOnLink: false
+      }
+    case 'MAIN_NAV':
+      return {
+        ...state,
+        playgroundVisible: action.status.playgroundVisible,
       }
     default:
       return state

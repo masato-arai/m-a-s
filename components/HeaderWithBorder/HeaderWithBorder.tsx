@@ -7,14 +7,16 @@ import { Wrapper } from '../../styles/utils/wrappers'
 
 import HeaderNav from '../HeaderNav/HeaderNav'
 
-const Header = () => (
-  <Container>
-    <StyledWrapper>
-      <Border />
-      <HeaderNav />
-    </StyledWrapper>
-  </Container>
-)
+const Header = () => {
+  return (
+    <Container>
+      <StyledWrapper>
+        <Border />
+        <HeaderNav />
+      </StyledWrapper>
+    </Container>
+  )
+}
 
 const Container = styled.header`
   align-items: center;

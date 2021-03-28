@@ -1,8 +1,11 @@
 import { useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
+import { useQuery } from '@apollo/client'
 import styled from 'styled-components'
 
-import mainActions from './mainActions'
+import GET_MAIN_NAV_DATA from '../../graphql/query/get-main-nav-data'
+
+import appActions from './appActions'
 
 interface MousemoveEvent {
   clientX: number;
@@ -10,38 +13,47 @@ interface MousemoveEvent {
   target: HTMLInputElement;
 }
 
-const Main = ({ children }) => {
+const App = ({ children }) => {
   const container = useRef(null)
   const dispatch = useDispatch()
+  const { data: mainNavData } = useQuery(GET_MAIN_NAV_DATA);
 
   function mousemoveEventHandler(event: MousemoveEvent) {
     const target = event.target
     const mousePositionLeft = event.clientX - 12
     const mousePositionTop = event.clientY - 12
 
-    dispatch(mainActions.mousePosition({
+    dispatch(appActions.mousePosition({
       mousePositionLeft,
       mousePositionTop,
     }))
 
     if (target.tagName !== 'A' && target.tagName !== 'BUTTON') {
-      return dispatch(mainActions.shrinkCursor())
+      return dispatch(appActions.shrinkCursor())
     }
 
-    dispatch(mainActions.enlargeCursor())
+    dispatch(appActions.enlargeCursor())
   }
 
   useEffect(() => {
     container.current.addEventListener('mousemove', mousemoveEventHandler, true)
-    dispatch(mainActions.shrinkCursor())
+    dispatch(appActions.shrinkCursor())
 
     return () => {
       if (!container.current) return
 
       container.current.removeEventListener('mousemove', mousemoveEventHandler, false)
-      dispatch(mainActions.shrinkCursor())
+      dispatch(appActions.shrinkCursor())
     }
   }, [])
+
+  useEffect(() => {
+    if (!mainNavData) return
+
+    dispatch(appActions.mainNav({
+      playgroundVisible: mainNavData.mainNav.playgroundVisible,
+    }))
+  }, [mainNavData])
 
   return (
     <Container ref={container}>
@@ -50,8 +62,8 @@ const Main = ({ children }) => {
   )
 }
 
-const Container = styled.main`
+const Container = styled.div`
   height: 100%;
 `
 
-export default Main
+export default App

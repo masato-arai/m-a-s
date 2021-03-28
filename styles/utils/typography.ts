@@ -15,7 +15,7 @@ export const TypoH1 = styled.h1`
 export const TypoNavLink = styled.a`
   font-size: 20px;
   letter-spacing: 1px;
-  line-height: 1;
+  line-height: 1.2;
   text-decoration: none;
 
   @media ${breakpoints.laptop} {

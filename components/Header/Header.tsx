@@ -36,6 +36,7 @@ const Container = styled.header`
 `
 
 const StyledWrapper = styled(Wrapper)`
+  align-items: center;
   display: flex;
   justify-content: space-between;
   width: 100%;
