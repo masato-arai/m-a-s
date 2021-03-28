@@ -12,16 +12,10 @@ const Playground = () => {
 
       <main>
         <Wrapper>
-          <h1>Playground</h1>
           <ul>
             <li>
-              <Link href="/playground/[id]" as={`/playground/first-post`}>
+              <Link href="/playground/first-post" passHref>
                 <a>First post</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/playground/[id]" as={`/playground/second-post`}>
-                <a>Second post</a>
               </Link>
             </li>
           </ul>
