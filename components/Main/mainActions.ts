@@ -3,14 +3,12 @@ const mousePosition = status => ({
   status,
 })
 
-const enlargeCursor = status => ({
+const enlargeCursor = () => ({
   type: 'ENLARGE_CURSOR',
-  status,
 })
 
-const shrinkCursor = status => ({
+const shrinkCursor = () => ({
   type: 'SHRINK_CURSOR',
-  status,
 })
 
 export default {

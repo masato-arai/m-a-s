@@ -25,19 +25,21 @@ const Main = ({ children }) => {
     }))
 
     if (target.tagName !== 'A' && target.tagName !== 'BUTTON') {
-      return dispatch(mainActions.shrinkCursor({ cursorIsOnLink: false }))
+      return dispatch(mainActions.shrinkCursor())
     }
 
-    dispatch(mainActions.enlargeCursor({ cursorIsOnLink: true }))
+    dispatch(mainActions.enlargeCursor())
   }
 
   useEffect(() => {
     container.current.addEventListener('mousemove', mousemoveEventHandler, true)
+    dispatch(mainActions.shrinkCursor())
 
     return () => {
       if (!container.current) return
 
       container.current.removeEventListener('mousemove', mousemoveEventHandler, false)
+      dispatch(mainActions.shrinkCursor())
     }
   }, [])
 

@@ -7,7 +7,7 @@ import GET_HOME_DATA from '../graphql/query/get-home-data'
 import DataNotFound from '../components/DataNotFound'
 import Layout from '../components/Layout'
 import Canvas from '../components/Canvas'
-import HeaderWithBorder from '../components/HeaderWithBorder'
+import HeaderWithBorder from '../components/HeaderWithBorder/HeaderWithBorder'
 
 import { breakpoints } from '../styles/utils/breakpoints'
 import { colors } from '../styles/utils/colors'
