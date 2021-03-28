@@ -7,23 +7,23 @@ import { breakpoints } from '../../styles/utils/breakpoints'
 import { colors } from '../../styles/utils/colors'
 import { spaces } from '../../styles/utils/spaces'
 
-interface CursorCircleState {
-  cursorCircle: CursorCircle;
+interface CursorState {
+  main: Main,
 }
 
-interface CursorCircle {
-  isOnLink: boolean;
-  leftPosition: number;
-  topPosition: number;
+interface Main {
+  cursorIsOnLink: boolean;
+  mousePositionLeft: number;
+  mousePositionTop: number;
 }
 
-const CursorCircle = () => {
+const MouseCursor = () => {
   const circleEl = useRef(null)
-  const cursorCircle: CursorCircle = useSelector((state: CursorCircleState) => {
+  const cursor = useSelector((state: CursorState) => {
     return {
-      isOnLink: state.cursorCircle.isOnLink,
-      leftPosition: state.cursorCircle.leftPosition,
-      topPosition: state.cursorCircle.topPosition,
+      cursorIsOnLink: state.main.cursorIsOnLink,
+      mousePositionLeft: state.main.mousePositionLeft,
+      mousePositionTop: state.main.mousePositionTop,
     }
   })
 
@@ -34,19 +34,19 @@ const CursorCircle = () => {
   useEffect(() => {
     gsap.to(circleEl.current, {
       css: {
-        left: cursorCircle.leftPosition,
-        top: cursorCircle.topPosition,
+        left: cursor.mousePositionLeft,
+        top: cursor.mousePositionTop,
       },
       duration: 0.6,
     })
-  }, [cursorCircle])
+  }, [cursor])
 
   return (
-    <Circle ref={circleEl} className={!!cursorCircle.isOnLink && 'enlarged'} />
+    <CircleShape ref={circleEl} className={!!cursor.cursorIsOnLink && 'enlarged'} />
   )
 }
 
-const Circle = styled.span`
+const CircleShape = styled.span`
   backface-visibility: hidden;
   background-color: ${colors.white};
   border-radius: 50%;
@@ -71,4 +71,4 @@ const Circle = styled.span`
   }
 `
 
-export default CursorCircle
+export default MouseCursor

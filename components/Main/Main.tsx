@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
-import cursorCircleActions from '../CursorCircle/cursorCircleActions'
+import mainActions from './mainActions'
 
 interface MousemoveEvent {
   clientX: number;
@@ -16,19 +16,19 @@ const Main = ({ children }) => {
 
   function mousemoveEventHandler(event: MousemoveEvent) {
     const target = event.target
-    const leftPosition = event.clientX - 12
-    const topPosition = event.clientY - 12
+    const mousePositionLeft = event.clientX - 12
+    const mousePositionTop = event.clientY - 12
 
-    dispatch(cursorCircleActions.circlePosition({
-      leftPosition,
-      topPosition,
+    dispatch(mainActions.mousePosition({
+      mousePositionLeft,
+      mousePositionTop,
     }))
 
     if (target.tagName !== 'A' && target.tagName !== 'BUTTON') {
-      return dispatch(cursorCircleActions.shrinkCircle({ isOnLink: false }))
+      return dispatch(mainActions.shrinkCursor({ cursorIsOnLink: false }))
     }
 
-    dispatch(cursorCircleActions.enlargeCircle({ isOnLink: true }))
+    dispatch(mainActions.enlargeCursor({ cursorIsOnLink: true }))
   }
 
   useEffect(() => {

@@ -2,7 +2,7 @@
 import React, { ReactNode } from 'react'
 import Head from 'next/head'
 
-import CursorCircle from './CursorCircle/CursorCircle'
+import MouseCursor from './MouseCursor/MouseCursor'
 import Main from './Main/Main'
 
 type Props = {
@@ -30,7 +30,7 @@ const Layout = ({ children, title = 'Masato Arai - Web Application Developer' }:
       </Head>
 
       <Main>
-        <CursorCircle />
+        <MouseCursor />
 
         {children}
       </Main>

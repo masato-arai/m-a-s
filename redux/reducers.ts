@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import cursorCircle from '../components/CursorCircle/cursorCircleReducer'
+import main from '../components/Main/mainReducer'
 
 export default combineReducers({
-  cursorCircle,
+  main,
 })
