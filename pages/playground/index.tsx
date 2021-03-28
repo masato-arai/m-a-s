@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 import Layout from '../../components/Layout'
@@ -7,8 +6,6 @@ import Header from '../../components/Header/Header'
 import { Wrapper } from '../../styles/utils/wrappers'
 
 const Playground = () => {
-  const router = useRouter()
-
   return (
     <Layout>
       <Header />

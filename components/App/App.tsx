@@ -48,7 +48,7 @@ const App = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    if (!mainNavData) return
+    if (!mainNavData || !mainNavData.mainNav) return
 
     dispatch(appActions.mainNav({
       playgroundVisible: mainNavData.mainNav.playgroundVisible,
