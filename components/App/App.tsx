@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
-// import { useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import styled from 'styled-components'
 
-// import GET_MAIN_NAV_DATA from '../../graphql/query/get-main-nav-data'
+import GET_MAIN_NAV_DATA from '../../graphql/query/get-main-nav-data'
 
 import appActions from './appActions'
 
@@ -16,7 +16,7 @@ interface MousemoveEvent {
 const App = ({ children }) => {
   const container = useRef(null)
   const dispatch = useDispatch()
-  // const { data: mainNavData } = useQuery(GET_MAIN_NAV_DATA);
+  const { data: mainNavData } = useQuery(GET_MAIN_NAV_DATA);
 
   function mousemoveEventHandler(event: MousemoveEvent) {
     const target = event.target
@@ -47,13 +47,13 @@ const App = ({ children }) => {
     }
   }, [])
 
-  // useEffect(() => {
-  //   if (!mainNavData || !mainNavData.mainNav) return
+  useEffect(() => {
+    if (!mainNavData || !mainNavData.mainNav) return
 
-  //   dispatch(appActions.mainNav({
-  //     playgroundVisible: mainNavData.mainNav.playgroundVisible,
-  //   }))
-  // }, [mainNavData])
+    dispatch(appActions.mainNav({
+      playgroundVisible: mainNavData.mainNav.playgroundVisible,
+    }))
+  }, [mainNavData])
 
   return (
     <Container ref={container}>
