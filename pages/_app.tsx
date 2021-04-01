@@ -25,7 +25,7 @@ function App({ Component, pageProps }: AppProps) {
       <GlobalStyle />
 
       <Provider store={store}>
-        <ApolloProvider client={apollo.getClient()}>
+        <ApolloProvider client={apollo.getClient(true)}>
           <ThemeProvider theme={theme}>
             <Component {...pageProps} />
           </ThemeProvider>
