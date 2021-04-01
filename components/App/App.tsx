@@ -13,7 +13,7 @@ interface MousemoveEvent {
   target: HTMLInputElement;
 }
 
-const App = ({ children }) => {
+const Main = ({ children }) => {
   const container = useRef(null)
   const dispatch = useDispatch()
   const { data: mainNavData } = useQuery(GET_MAIN_NAV_DATA);
@@ -66,4 +66,4 @@ const Container = styled.div`
   height: 100%;
 `
 
-export default App
+export default Main

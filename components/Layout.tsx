@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react'
 import Head from 'next/head'
 
 import MouseCursor from './MouseCursor/MouseCursor'
-import App from './App/App'
+import Main from './App/App'
 
 type Props = {
     children?: ReactNode
@@ -29,11 +29,11 @@ const Layout = ({ children, title = 'Masato Arai - Web Application Developer' }:
         <meta name="og:type" content="website" />
       </Head>
 
-      <App>
+      <Main>
         <MouseCursor />
 
         {children}
-      </App>
+      </Main>
     </>
 )
 
