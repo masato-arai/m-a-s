@@ -10,18 +10,18 @@ type Props = {
     title?: string
 }
 
-const Layout = ({ children, title = 'Masato Arai - Web Application Developer' }: Props) => (
+const Layout = ({ children, title = 'Masato Arai - iOS / Web App Developer' }: Props) => (
     <>
       <Head>
         <title>{title}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="description" content="Masato Arai - Web Application Developer" />
+        <meta name="description" content="Masato Arai - iOS / Web App Developer" />
 
         <meta name="image" content="https://m-a-s.info/images/home.jpg" />
 
         <meta name="og:title" content="Masato Arai" />
-        <meta name="og:description" content="Masato Arai - Web Application Developer" />
+        <meta name="og:description" content="Masato Arai - iOS / Web App Developer" />
         <meta name="og:image" content="https://m-a-s.info/images/home.jpg" />
         <meta name="og:url" content="https://m-a-s.info" />
         <meta name="og:site_name" content="Masato Arai" />
